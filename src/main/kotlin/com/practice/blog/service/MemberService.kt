@@ -16,8 +16,7 @@ class MemberService(
 ) {
 
     fun get(id: String): MemberGetResponse {
-        val member = memberRepository.findById(id)
-            .orElseThrow { IllegalArgumentException("멤버가 존재하지 않습니다.") }
+        val member = findMember(id)
         return MemberGetResponse.from(member)
     }
 
@@ -35,8 +34,7 @@ class MemberService(
 
     @Transactional
     fun update(id: String, request: MemberCreateRequest) {
-        val member = memberRepository.findById(id)
-            .orElseThrow { IllegalArgumentException("멤버가 존재하지 않습니다.") }
+        val member = findMember(id)
         member.update(request.email, request.password, request.name, request.birth)
         memberRepository.save(member)
     }
@@ -44,5 +42,10 @@ class MemberService(
     @Transactional
     fun delete(id: String) {
         memberRepository.deleteById(id)
+    }
+
+    private fun findMember(id: String): Member {
+        return memberRepository.findById(id)
+            .orElseThrow { IllegalArgumentException("멤버가 존재하지 않습니다.") }
     }
 }
