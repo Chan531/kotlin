@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/members")
 class MemberController(
-    val memberService: MemberService
+    private val memberService: MemberService
 ) {
 
     @GetMapping("/{id}")
