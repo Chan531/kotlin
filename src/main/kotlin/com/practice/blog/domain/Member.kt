@@ -8,13 +8,13 @@ import java.time.LocalDate
 class Member(
     @Id
     val id: String? = null,
-    val email: String,
-    val password: String,
-    val name: String,
-    val birth: LocalDate
+    var email: String,
+    var password: String,
+    var name: String,
+    var birth: LocalDate
 ) {
 
-    companion object{
+    companion object {
         fun of(
             email: String,
             password: String,
@@ -28,5 +28,12 @@ class Member(
                 birth = birth
             )
         }
+    }
+
+    fun update(email: String, password: String, name: String, birth: LocalDate) {
+        this.email = email
+        this.password = password
+        this.name = name
+        this.birth = birth
     }
 }

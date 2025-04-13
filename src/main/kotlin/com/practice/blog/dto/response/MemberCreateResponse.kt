@@ -1,7 +1,5 @@
 package com.practice.blog.dto.response
 
-import com.practice.blog.domain.Member
-
 data class MemberCreateResponse(
     val id: String
 ) {
